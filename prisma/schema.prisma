@@ -1,0 +1,203 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model AdminUser {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  passwordHash String
+  role        String   @default("content_admin")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("admin_users")
+}
+
+model ProjectCategory {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  slug      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  projects  Project[]
+
+  @@map("project_categories")
+}
+
+model Technology {
+  id        String             @id @default(cuid())
+  name      String             @unique
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+  projects  ProjectTechnology[]
+
+  @@map("technologies")
+}
+
+model Project {
+  id              String             @id @default(cuid())
+  title           String
+  slug            String             @unique
+  shortDescription String
+  description     String
+  problemStatement String?
+  solution        String?
+  categoryId      String?
+  category        ProjectCategory?   @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  features        String[]
+  technologies    ProjectTechnology[]
+  role            String?
+  completionDate  String?
+  liveUrl         String?
+  githubUrl       String?
+  image           String?
+  gallery         ProjectImage[]
+  featured        Boolean            @default(false)
+  published       Boolean            @default(false)
+  seoTitle        String?
+  seoDescription  String?
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  @@index([published, featured])
+  @@map("projects")
+}
+
+model ProjectTechnology {
+  projectId    String
+  technologyId String
+  project      Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  technology   Technology @relation(fields: [technologyId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, technologyId])
+  @@map("project_technologies")
+}
+
+model ProjectImage {
+  id        String   @id @default(cuid())
+  projectId String
+  url       String
+  altText   String?
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@map("project_images")
+}
+
+model Service {
+  id          String         @id @default(cuid())
+  title       String
+  slug        String         @unique
+  summary     String
+  description String
+  icon        String?
+  highlights  String[]
+  features    ServiceFeature[]
+  published   Boolean        @default(false)
+  seoTitle    String?
+  seoDescription String?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([published])
+  @@map("services")
+}
+
+model ServiceFeature {
+  id        String   @id @default(cuid())
+  serviceId String
+  text      String
+  service   Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@map("service_features")
+}
+
+model Testimonial {
+  id          String   @id @default(cuid())
+  name        String
+  organization String?
+  quote       String
+  imageUrl    String?
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("testimonials")
+}
+
+model Enquiry {
+  id              String        @id @default(cuid())
+  reference       String        @unique
+  name            String
+  email           String
+  phone           String?
+  organization    String?
+  subject         String
+  message         String
+  serviceRequested String?
+  status          String        @default("New")
+  notes           EnquiryNote[]
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([status])
+  @@map("enquiries")
+}
+
+model EnquiryNote {
+  id        String   @id @default(cuid())
+  enquiryId  String
+  content   String
+  createdAt DateTime @default(now())
+  enquiry   Enquiry  @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+
+  @@map("enquiry_notes")
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  fileName  String
+  url       String
+  mimeType  String
+  size      Int
+  createdAt DateTime @default(now())
+
+  @@map("media")
+}
+
+model SiteSetting {
+  id             String   @id @default(cuid())
+  key            String   @unique
+  value          String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("site_settings")
+}
+
+model ProcessStep {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("process_steps")
+}
+
+model AdminActivityLog {
+  id        String   @id @default(cuid())
+  adminUser String
+  action    String
+  details   String?
+  createdAt DateTime @default(now())
+
+  @@map("admin_activity_logs")
+}
