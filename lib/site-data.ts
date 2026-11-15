@@ -158,8 +158,8 @@ const defaultContent: SiteContent = {
     founderBio:
       'An IT professional with a background in computer network management, systems administration, and software development, with interests spanning Python, Django, Next.js, database design, APIs, cloud computing, networking, and Linux operations.',
     contactEmail: 'hello@eltechsolutions.com',
-    phone: '+233 24 000 0000',
-    whatsapp: '+233 240000000',
+    phone: '+233 24 691 9433',
+    whatsapp: '+233 246919433',
     location: 'Koforidua, Ghana',
     footerDescription:
       'ELTECH IT SOLUTIONS designs and builds practical digital platforms that help businesses operate more effectively.',
