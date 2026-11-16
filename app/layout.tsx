@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'ELTECH IT SOLUTIONS',
   description: 'Professional website and digital solutions studio.',
+  icons: {
+    icon: '/icon.png',
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

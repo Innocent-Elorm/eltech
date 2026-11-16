@@ -29,16 +29,15 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on GitHub Pages
-
-The `Deploy to GitHub Pages` workflow publishes the public site from the `master` branch. It creates a static export under the repository path, so the project Pages URL is `https://innocent-elorm.github.io/eltech/`.
-
-The static deployment does not include the admin dashboard or server-backed form submissions. Contact and quote forms open the visitor's email app instead. The regular Next.js build remains available for deployments that need the admin or database features.
-
-In the repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**. Push to `master` or run the workflow manually to publish.
-
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The `Deploy to Vercel` GitHub Actions workflow deploys pull requests as Vercel Preview deployments and pushes to `master` to Production. A manual run from `master` deploys to Production; a manual run from another branch creates a Preview deployment. It deploys the full Next.js application, including server features.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To configure it:
+
+1. Import this repository into Vercel and set `master` as the production branch.
+2. Configure the app's environment variables for Preview and Production in Vercel. Use `.env.example` as the variable-name reference, and set strong, unique values for `AUTH_SECRET`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD`.
+3. Add these repository **Actions secrets**: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID`. The IDs are available in `.vercel/project.json` after linking the project with `vercel link`, or in the Vercel project settings.
+4. Disable automatic Git deployments in Vercel so GitHub Actions is the only deployment path.
+
+The workflow requires these secrets. Pull requests from forks are intentionally skipped because GitHub does not expose repository secrets to them. See the [Next.js deployment documentation](https://nextjs.org/docs/app/getting-started/deploying) for platform details.

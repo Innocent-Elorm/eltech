@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Globe, Mail, MapPin, Phone } from 'lucide-react';
 import { getSiteData, getPublishedServices } from '@/lib/site-data';
@@ -10,7 +11,7 @@ export default async function PublicFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-5 lg:px-8">
         <div className="lg:col-span-2">
           <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#2563EB] font-bold text-white">E</div>
+            <Image src="/icon.png" alt="" width={40} height={40} className="h-10 w-10 rounded-xl bg-white object-contain p-1" />
             <div>
               <div className="text-lg font-bold text-white">{siteSettings.businessName}</div>
               <div className="text-[10px] uppercase tracking-[0.2em] text-slate-400">{siteSettings.tagline}</div>

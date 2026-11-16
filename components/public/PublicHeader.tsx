@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
 import { getSiteData } from '@/lib/site-data';
@@ -18,9 +19,7 @@ export default async function PublicHeader() {
     <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#101D35] text-sm font-bold text-white">
-            E
-          </div>
+          <Image src="/icon.png" alt="" width={40} height={40} className="h-10 w-10 rounded-xl object-contain" />
           <div>
             <div className="text-lg font-bold tracking-tight text-[#101D35]">{siteSettings.businessName}</div>
           </div>
