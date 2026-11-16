@@ -1,8 +1,23 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
 import AdminSidebar from '@/components/admin/AdminSidebar';
 import { isAdminAuthenticated } from '@/lib/auth';
 
-export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense
+      fallback={
+        <main className="flex min-h-screen items-center justify-center bg-slate-100 px-4 py-10">
+          <p className="text-sm text-slate-600">Checking admin session...</p>
+        </main>
+      }
+    >
+      <AdminAccess>{children}</AdminAccess>
+    </Suspense>
+  );
+}
+
+async function AdminAccess({ children }: { children: React.ReactNode }) {
   const isAuthenticated = await isAdminAuthenticated();
 
   if (!isAuthenticated) {

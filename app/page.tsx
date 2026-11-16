@@ -29,7 +29,7 @@ export default async function HomePage() {
           <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:py-28">
             <div className="flex flex-col justify-center">
               <p className="motion-enter mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-blue-200">
-                <Sparkles className="h-3.5 w-3.5" /> Digital solutions studio
+                 Digital solutions studio
               </p>
               <h1 className="motion-enter motion-delay-1 max-w-xl text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
                 {siteSettings.heroHeading}

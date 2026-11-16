@@ -1,8 +1,23 @@
 import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 import { loginAdmin } from '@/lib/actions';
 import { isAdminAuthenticated } from '@/lib/auth';
 
-export default async function AdminLoginPage() {
+export default function AdminLoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="flex min-h-screen items-center justify-center bg-slate-100 px-4 py-10">
+          <p className="text-sm text-slate-600">Checking admin session...</p>
+        </main>
+      }
+    >
+      <AdminLoginForm />
+    </Suspense>
+  );
+}
+
+async function AdminLoginForm() {
   const authenticated = await isAdminAuthenticated();
 
   if (authenticated) {
