@@ -46,12 +46,6 @@ export default async function HomePage() {
             </div>
 
             <div className="hero-visual relative flex items-center justify-center">
-              <div aria-hidden="true" className="hero-float-chip absolute -left-2 top-5 z-10 rounded-2xl border border-cyan-200/20 bg-[#10243b]/90 px-4 py-3 shadow-xl backdrop-blur sm:left-0 lg:-left-10 lg:top-16">
-                <span className="flex items-center gap-2 text-xs font-medium text-cyan-100"><span className="h-2 w-2 rounded-full bg-cyan-300" /> Ideas in motion</span>
-              </div>
-              <div aria-hidden="true" className="hero-float-chip hero-float-chip-delay absolute -right-1 bottom-2 z-10 rounded-2xl border border-blue-200/20 bg-[#10243b]/90 px-4 py-3 shadow-xl backdrop-blur sm:right-0 lg:-right-5 lg:bottom-14">
-                <span className="text-xs font-medium text-blue-100">Design <span className="mx-1 text-cyan-300">→</span> Build <span className="mx-1 text-cyan-300">→</span> Grow</span>
-              </div>
               <div className="hero-panel relative w-full max-w-lg rounded-[32px] border border-white/10 bg-gradient-to-br from-slate-900 to-[#101D35] p-6 shadow-2xl shadow-blue-950/30">
                 <div aria-hidden="true" className="hero-panel-glow absolute -right-4 -top-4 h-28 w-28 rounded-full bg-[#3B82F6]/30 blur-2xl" />
                 <div className="rounded-[24px] border border-white/10 bg-slate-950/30 p-5">

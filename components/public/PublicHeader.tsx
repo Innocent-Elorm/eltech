@@ -1,15 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Menu } from 'lucide-react';
 import { getSiteData } from '@/lib/site-data';
+import MobileNavigation from '@/components/public/MobileNavigation';
 import ThemeToggle from '@/components/public/ThemeToggle';
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
+  { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
   { href: '/projects', label: 'Projects' },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export default async function PublicHeader() {
@@ -40,12 +40,7 @@ export default async function PublicHeader() {
           </Link>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
-          <ThemeToggle />
-          <button className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700" aria-label="Open menu">
-            <Menu className="h-5 w-5" />
-          </button>
-        </div>
+        <MobileNavigation items={navItems} />
       </div>
     </header>
   );
